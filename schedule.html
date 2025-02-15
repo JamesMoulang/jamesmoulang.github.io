@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="James Moulang">
+    <title>Cam Skate</title>
+
+    <meta property="og:image" content="./img/cam_skate_bg.jpg" />
+    <meta property="og:description" content="Help us fund Cambridge's first indoor skatepark!" />
+    <meta property="og:url"content="http://cam-skate.co.uk" />
+    <meta property="og:title" content="Cam Skate" />
+
+    <!-- Font Awesome icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+          background-image: bg.jpg;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <!-- <link href="../cover.css" rel="stylesheet"> -->
+    <link href="./action/projects.css" rel="stylesheet">
+    <style>
+      body {
+        background-color: #333;
+        color: #fff;
+      }
+      html {
+        background-color: #333;
+      }
+      .nav-masthead .nav-link {
+        color: rgba(255, 255, 255, 1);
+        background-color: transparent;
+        border-bottom: .25rem solid transparent;
+      }
+
+      .highlight {
+        color: #f77f00;
+        font-weight: bold;
+      }
+
+      .donation {
+        padding-top: 8px;
+        padding-bottom: 0px;
+        padding-left: 16px;
+        padding-right: 16px;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+/*        border-color: #007bff;*/
+      }
+
+      .nav-masthead .nav-link:hover,
+      .nav-masthead .nav-link:focus {
+        border-bottom-color: rgba(255, 255, 255, .25);
+      }
+      .nav-masthead .active {
+        color: #fff;
+        border-bottom-color: #fff;
+      }
+
+      .nav-masthead .nav-link.join:hover,
+      .nav-masthead .nav-link.join:focus {
+        border-bottom-color: rgba(247, 127, 0, .25);
+      }
+
+      .nav-masthead .active-join {
+        color: #f77f00;
+        border-bottom-color: #f77f00;
+      }
+
+      .nav-link.join {
+        color: #f77f00;
+      }
+
+      .video-container {
+          position: relative;
+          padding-bottom: 56.25%; /* 16:9 */
+          height: 0;
+          margin: 0 auto;
+      }
+      .video-container iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+      }
+
+      .call_to_action {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      .call_toaction:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        color: #f77f00;
+      }
+
+      .dc-feature-col {
+        text-align: center;
+        padding: 4px;
+      }
+
+      .dc-feature {
+        background-color: #f77f00;
+        padding: 8px;
+        padding-top: 24px;
+        border-radius: 4px;
+      }
+
+      .dc-feature h1 {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .dc-feature p {
+        font-size: 16px;
+        /*font-weight: bold;*/
+      }
+
+      .article2 li a {
+        /*color: #f77f00;*/
+      }
+
+      .centered_header {
+
+      }
+
+      .lead-small {
+        font-size: 16px;
+      }
+
+      .early_session {
+        background-color: #6aa84f;
+        overflow: visible;
+      }
+
+      .late_session {
+        background-color: #4086f6;
+      }
+
+      .morning_session {
+        background-color: #9ec6e8;
+      }
+
+      .girl_session {
+        background-color: #cb0200;
+      }
+
+      .kids_session {
+        background-color: #9b02f9;
+      }
+
+      tr {
+        border-bottom-style: solid;
+      }
+
+      .day {
+        border-right-style: solid;
+        border-left-style: solid;
+        padding: 4px;
+        padding-right: 16px;
+        padding-left: 16px;
+        text-align: right;
+      }
+
+      .hour {
+        border-right-style: solid;
+        border-left-style: solid;
+        padding-bottom: 0px;
+        padding-top: 16px;
+        padding-right: 8px;
+        padding-left: 8px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="text-center">
+    <div style="width: 100%; padding: 4%; text-align: center;">
+      <div id="timetable_div" style="width: 100%; margin: 0 auto;"></div>
+    </div>
+  </body>
+  <script>
+    // Get elements, create canvas.
+
+    const morning_open = {
+      start: 9,
+      end: 12,
+      title: 'Open session',
+    };
+
+    const evening_open = {
+      start: 19,
+      end: 22,
+      title: 'Open session'
+    };
+
+    const afternoon_open = {
+      start: 16,
+      end: 19,
+      title: 'Open session'
+    };
+
+    const long_open = {
+      start: 16,
+      end: 22,
+      title: 'Open session'
+    };
+
+    const under_10s = {
+      start: 10,
+      end: 12,
+      title: '☕ Under 10s',
+      color: '#9D00FF',
+    };
+
+    const weekend_open = {
+      start: 14,
+      end: 18,
+      title: '☕ Open session',
+    };
+
+    const closed = {
+      start: 9,
+      end: 22,
+      title: 'Closed',
+      color: '#ea4335',
+    };
+
+    const closed_construction = {
+      start: 9,
+      end: 22,
+      title: 'Closed for construction',
+      color: '#ea4335',
+    };
+
+    const after_school = {
+      start: 15.5,
+      end: 18,
+      title: 'After school club',
+      color: '#9D00FF',
+    };
+
+    const after_work = {
+      start: 17,
+      end: 19,
+      title: 'After work club',
+      color: '#9D00FF',
+    };
+
+    const early_evening = {
+      start: 18,
+      end: 21,
+      title: 'Open session',
+    };
+
+    const tuesday_short = {
+      start: 17,
+      end: 19,
+      title: 'Open session',
+    };
+
+    const quads_and_blades = {
+      start: 19,
+      end: 22,
+      title: 'Quads & Blades',
+      color: '#9D00FF',
+    };
+
+    const girls_night = {
+      start: 19,
+      end: 22,
+      title: 'Girl Skate night',
+      color: '#9D00FF',
+    };
+
+    const queer_night = {
+      start: 19,
+      end: 22,
+      title: 'Queer Skate night',
+      color: '#9D00FF',
+    };
+
+    const pipe_beginners = {
+      start: 16,
+      end: 19,
+      title: '30+ (beginners)',
+      color: '#9D00FF',
+    };
+
+    const pipe = {
+      start: 19,
+      end: 22,
+      title: '30+ (all abilities)',
+      color: '#9D00FF',
+    };
+
+    const pipe_all = [ pipe_beginners, pipe ];
+
+    const saturday = [
+      under_10s,
+      {
+        start: 13,
+        end: 17,
+        title: '☕ Open session',
+      }
+    ];
+
+    const monday = [ after_school, early_evening ];
+
+    const late_weekend_open = Object.assign({}, weekend_open, {start: 16, end: 20});
+
+    const opening_hours = {
+      'Mon Jan 06': [ early_evening ],
+      'Tue Jan 07': [ tuesday_short ],
+      'Wed Jan 08': [ evening_open ],
+      'Thu Jan 09': [ evening_open ],
+      'Fri Jan 10': [ morning_open, quads_and_blades ],
+      'Sat Jan 11': saturday,
+      'Sun Jan 12': [
+        {
+          start: 10,
+          end: 14,
+          title: '☕ Open session',
+        },
+        {
+          start: 15,
+          end: 17,
+          title: 'Private hire',
+          color: '#ea4335',
+        }
+      ],
+      'Mon Jan 13': [ after_school, early_evening ],
+      'Tue Jan 14': [ after_work ],
+      'Wed Jan 15': [ evening_open ],
+      'Thu Jan 16': [ evening_open ],
+      'Fri Jan 17': [ morning_open, pipe_beginners, pipe],
+      'Sat Jan 18': saturday,
+      'Sun Jan 19': [ weekend_open ],
+      'Mon Jan 20': monday,
+      'Tue Jan 21': [ after_work ],
+      'Wed Jan 22': [ evening_open ],
+      'Thu Jan 23': [ evening_open ],
+      'Fri Jan 24': [ morning_open, queer_night ],
+      'Sat Jan 25': saturday,
+      'Sun Jan 26': [ weekend_open ],
+      'Mon Jan 27': monday,
+      'Tue Jan 28': [ after_work ],
+      'Wed Jan 29': [ evening_open ],
+      'Thu Jan 30': [ evening_open ],
+      'Fri Jan 31': [morning_open, girls_night],
+      'Sat Feb 01': saturday,
+      'Sun Feb 02': [ weekend_open ],
+      'Mon Feb 03': [ after_school, early_evening ],
+      'Tue Feb 04': [ after_work ],
+      'Wed Feb 05': [ evening_open ],
+      'Thu Feb 06': [ evening_open ],
+      'Fri Feb 07': [ morning_open, quads_and_blades ],
+      'Sat Feb 08': saturday,
+      'Sun Feb 09': [ weekend_open ],
+      'Mon Feb 10': monday,
+      'Tue Feb 11': [ after_work ],
+      'Wed Feb 12': [ evening_open ],
+      'Thu Feb 13': [ evening_open ],
+      'Fri Feb 14': [
+        morning_open,
+        {
+          start: 16,
+          end: 22,
+          title: "❤️ Valentine's open session",
+          color: '#AA336A'
+        }
+      ],
+      'Sat Feb 15': [
+        under_10s,
+        {
+          start: 12.5,
+          end: 16.5,
+          title: '🛴 Scooter only session',
+          color: '#9D00FF',
+        },
+        {
+          start: 17,
+          end: 22,
+          title: 'Heathen Jam (free entry)',
+          color: '#06402B',
+        },
+      ],
+      'Sun Feb 16': [
+        {
+          start: 10.5,
+          end: 12.5,
+          title: 'Martial arts',
+          color: '#9D00FF',
+        },
+        {
+          start: 13,
+          end: 18,
+          title: '☕ Open Session, Skate & Sauna',
+          // color: '#9D00FF',
+        },
+        // weekend_open
+      ],
+      'Mon Feb 17': monday,
+      'Tue Feb 18': [ after_work ],
+      'Wed Feb 19': [ evening_open ],
+      'Thu Feb 20': [ evening_open ],
+      'Fri Feb 21': [ morning_open, queer_night ],
+      'Sat Feb 22': saturday,
+      'Sun Feb 23': [ weekend_open ],
+      'Mon Feb 24': monday,
+      'Tue Feb 25': [ after_work ],
+      'Wed Feb 26': [ evening_open ],
+      'Thu Feb 27': [ evening_open ],
+      'Fri Feb 28': [ morning_open, girls_night, ],
+    }
+
+    const padding = 32;
+
+    const timetable_div = document.getElementById('timetable_div');
+    const timetable_canvas = document.createElement('canvas');
+
+    timetable_canvas.id = 'timetable_canvas';
+
+    timetable_div.appendChild(timetable_canvas);
+    const ctx = timetable_canvas.getContext('2d');
+
+    const draw = () => {
+      const canvas_width = timetable_div.clientWidth;
+
+      timetable_canvas.style.width = canvas_width + "px";
+      timetable_canvas.style.height = canvas_width * 0.5 + "px";
+
+      var scale = window.devicePixelRatio;
+
+      timetable_canvas.width = canvas_width * scale;
+      timetable_canvas.height = canvas_width * 0.5 * scale;
+
+      const draw_box = (_x, _y, _width, _height, options) => {
+        const x = 16 + (timetable_canvas.width - 32) * _x;
+        const y = 16 + (timetable_canvas.height - 32) * _y;
+        const width = (timetable_canvas.width - 32) * _width;
+        const height = (timetable_canvas.height - 32) * _height;
+
+        ctx.fillStyle = options.fillColor ? options.fillColor : 'white';
+        if (options.hasOwnProperty('fillAlpha') && options.fillAlpha > 0) {
+          ctx.globalAlpha = options.fillAlpha;
+          ctx.fillRect(x, y, width, height);
+        }
+
+        ctx.strokeStyle = options.strokeColor ? options.strokeColor : 'red';
+        ctx.lineWidth = (options.strokeWidth ? options.strokeWidth : 1) * timetable_canvas.width * 0.0015;
+
+        if (options.hasOwnProperty('strokeAlpha') && options.strokeAlpha > 0) {
+          ctx.globalAlpha = options.strokeAlpha;
+          ctx.strokeRect(x, y, width, height);
+        }
+      };
+
+      const draw_text = (_x, _y, _size, text, color='white', alpha=1, align='left', baseline='middle') => {
+        const x = 16 + (timetable_canvas.width - 32) * _x;
+        const y = 16 + (timetable_canvas.height - 32) * _y;
+        const size = (timetable_canvas.width - 32) * _size;
+
+        ctx.fillStyle = color;
+        ctx.globalAlpha = alpha;
+        ctx.textAlign = align;
+        ctx.textBaseline = baseline;
+        ctx.font = Math.round(size) + 'px Arial';
+        ctx.fillText(text, x, y);
+      }
+
+      const day_width = 0.175;
+
+      draw_box(day_width, 0, 1 - day_width, 1, {
+        strokeAlpha: 1,
+        fillAlpha: 0,
+        strokeColor: '#999999',
+        fillColor: '#ffffff',
+      });
+
+      // Background
+
+      const hours_width = 1 - day_width;
+      const hour_width = hours_width / 13;
+
+      for (var i = 0; i < 13; i++) {
+        draw_box(
+          day_width + i * hour_width,
+          1/8,
+          hour_width,
+          7/8,
+          {
+            strokeAlpha: 1,
+            strokeColor: '#404040',
+            fillAlpha: 0
+          }
+        );
+      }
+
+      for (var i = 0; i < 7; i++) {
+        draw_box(day_width, (i)/8, hours_width, 1/8, {
+          strokeAlpha: 1,
+          fillAlpha: 0,
+          strokeColor: '#505050',
+        });
+      }
+
+      // Draw days
+      for (var i = 0; i < 7; i++) {
+        draw_box(0, (i+1)/8, day_width, 1/8, {
+          strokeAlpha: 1,
+          fillAlpha: 0,
+          strokeColor: '#999999',
+        });
+
+        var currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + i);
+
+        // console.log(currentDate);
+
+        draw_text(
+          day_width - 0.01,
+          (i+1.5)/8,
+          0.023,
+          currentDate.toString().substr(0, 10),
+          '#ffffff',
+          1,
+          'right'
+        );
+      }
+
+      // Draw hours
+
+      for (var i = 0; i < 13; i++) {
+        draw_box(day_width + i * hour_width, 0, hour_width, 1/8, {
+          strokeAlpha: 1,
+          strokeColor: '#999999',
+          fillAlpha: 0,
+        });
+
+        draw_text(
+          day_width + (i+0.5) * hour_width,
+          1/16 - 0.026,
+          0.019,
+          (i+9).toString(),
+          '#ffffff',
+          1,
+          'center'
+        );
+
+        draw_text(
+          day_width + (i+0.5) * hour_width,
+          1/16 + 0.026,
+          0.019,
+          (i+10).toString(),
+          '#ffffff',
+          1,
+          'center'
+        );
+      }
+
+      // Draw opening slots.
+      for (var i = 0; i < 7; i++) {
+        var currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + i);
+
+        const oh = opening_hours[currentDate.toString().substr(0, 10)];
+
+        for (var j = 0; j < oh.length; j++) {
+          const start = oh[j].start;
+          const end = oh[j].end;
+
+          draw_box(
+            day_width + (start - 9) * hour_width,
+            (i+1)/8,
+            (hour_width) * (end - start),
+            1/8,
+            {
+              strokeAlpha: 1,
+              strokeColor: '#ffffff',
+              // strokeWidth: 2,
+              fillAlpha: 1,
+              fillColor: oh[j].color ? oh[j].color : '#5383ec',
+            }
+          );
+
+          draw_text(
+            day_width + (start - 9) * hour_width + hour_width * (end - start) * 0.5,
+            (i+1+0.5)/8,
+            0.017 * (oh[j].hasOwnProperty('font_size') ? oh[j].font_size : 1),
+            oh[j].title,
+            '#ffffff',
+            1,
+            'center'
+          );
+        }
+      }
+    };
+
+    window.onresize = draw;
+    draw();
+  </script>
+</html>
